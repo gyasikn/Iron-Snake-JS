@@ -1,0 +1,136 @@
+* {
+  font-family: monospace;
+}
+
+body {
+   background-color: black;
+}
+
+#btn, #btn-help{
+  position: absolute;
+  top: 100px;
+  left: 320px;
+  background-color: rgb(139, 255, 139); /* Neon green color */
+  border: none;
+  border-radius: 5px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14pt;
+}
+
+#btn-help {
+  background-color: rgb(207, 155, 255);
+  position: absolute;
+  top: 100px;
+  left: 450px;
+}
+
+.score {
+  position: absolute;
+  top: 100px;
+  right: 325px;
+  background-color: rgb(139, 255, 139); /* Neon green color */
+  border: none;
+  border-radius: 5px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14pt;
+}
+
+.controls {
+  text-align: left;
+  font-size: 15pt;
+  position: absolute;
+  right: 320px;
+  top: 90px;
+}
+
+#canvas {
+  border: 1px solid rgb(139, 255, 139);
+  border-radius: 5px;
+  position: absolute;
+  top: 150px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(139, 255, 139);
+}
+
+img {
+  width: 80px;
+}
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* stay in place dammit*/
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: rgb(207, 155, 255);
+    margin: 15% auto;
+    padding: 20px;
+    border: 5px solid rgb(139, 255, 139);
+    width: 55%;
+    animation-name: animatetop;
+    animation-duration: 0.5s;
+}
+
+/* The Close Button */
+.close {
+    color: black;
+    float: right;
+    font-size: 47px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ /* Modal Header */
+.modal-header {
+  padding: 1px 20px;
+  background-color: rgb(139, 255, 139);
+  border: 3px solid black;
+  text-align: center;
+}
+
+.modal-body {
+  padding: 1px 20px;
+  text-align: center;
+}
+
+.modal-footer {
+  padding: 1px 20px;
+  background-color: rgb(139, 255, 139);
+  border: 3px solid black;
+  text-align: center;
+}
+
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
