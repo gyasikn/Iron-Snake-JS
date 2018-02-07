@@ -23,21 +23,22 @@ window.onload = function () {
 
   var drawModule = (function () {
     var bodySnake = function (x, y) {
-      // snake single square color
-      ctx.fillStyle = 'white';
+      // snake body color
+      ctx.fillStyle = 'rgb(139, 255, 139)';
       ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
-      // snake square border
-      ctx.strokeStyle = 'red';
-      ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
+      // snake border color
+      // ctx.strokeStyle = 'rgb(207, 155, 255)';
+      ctx.strokeStyle = 'violet';
+      ctx.strokeRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
     }
 
 
     var foodItem = function (x, y) {
       // border of food
-      ctx.fillStyle = 'white';
+      ctx.fillStyle = 'yellow';
       ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
       // single square of food.
-      ctx.fillStyle = 'black';
+      ctx.fillStyle = 'red';
       ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
     }
 
@@ -118,7 +119,7 @@ window.onload = function () {
       ctx.fillRect(0, 0, w, h);
 
       // border
-      ctx.strokeStyle = "black";
+      // ctx.strokeStyle = "white";
       ctx.strokeRect(0, 0, w, h);
 
       // disable button while in play
