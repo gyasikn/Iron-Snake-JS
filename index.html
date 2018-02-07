@@ -19,13 +19,12 @@
   <button id='btn'>START</button>
 
   <div class="score">
-    SCORE:
+    SCORE: <span id="scoreCount">0</span>
   </div>
 
+
+  
   <button id="btn-help">HELP</button>
-
-
-
 
 
 <!-- Modal -->
@@ -43,7 +42,7 @@
       </div>
 
       <div class="modal-footer">
-        <p>Enjoy The Game!</p>
+        <h3>Enjoy The Game!</h3>
       </div>
 
 
@@ -51,34 +50,12 @@
 
   </div>
 
-<script>
-    var modal = document.getElementById('modal-help');
-    var btn = document.getElementById('btn-help');
-    var span = document.getElementsByClassName('close')[0];
-
-    btn.onclick = function () {
-      modal.style.display = "block";
-    }
-
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-</script>
-
-<!-- Modal End -->
-
-
 
 
 
 
 <script src="js/snake.js"></script>
+<script src="js/modal.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </body>

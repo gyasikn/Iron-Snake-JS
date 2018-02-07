@@ -93,6 +93,7 @@ img {
     width: 55%;
     animation-name: animatetop;
     animation-duration: 0.5s;
+    transition: all ease 1s;
 }
 
 /* The Close Button */

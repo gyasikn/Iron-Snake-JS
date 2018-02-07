@@ -1,16 +1,25 @@
+var gameScore = document.getElementById('scoreCount');
+var score = 0;
+// var food = { x: 0, y: 0};
+
+
 window.onload = function () {
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-
     var snakeSize = 10;
     var w = 800;
     var h = 600;
-    var score = 0;
     var snake;
     var food;
     var myMusic;
     var paused = false;
+    
+    // var food = {
+    //   x: Math.floor((Math.random() * 800) + 1),
+    //   y: Math.floor((Math.random() * 600) + 1),
+    // }
 
+    // console.log(food);
 
   var drawModule = (function () {
     var bodySnake = function (x, y) {
@@ -22,6 +31,7 @@ window.onload = function () {
       ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
     }
 
+
     var foodItem = function (x, y) {
       // border of food
       ctx.fillStyle = 'white';
@@ -30,6 +40,14 @@ window.onload = function () {
       ctx.fillStyle = 'black';
       ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
     }
+
+    // var foodItem = function (x, y) {
+    //   var img = new Image();
+    //   img.onload = function () {
+    //     ctx.drawImage(img, food.x, food.y);
+    //   }
+    //   img.src = "images/clyde.gif";
+    // }  
 
 
     var drawSnake = function () {
@@ -45,14 +63,20 @@ window.onload = function () {
       }
     }
 
-
+    
 
     var createFood = function () {
+
+      
+      // original working placement
       food = {
         // generates random food on board.
-        x: Math.floor((Math.random() * 30) + 1),
-        y: Math.floor((Math.random() * 30) + 1)
+        x: Math.floor((Math.random() * 50) + 1),
+        y: Math.floor((Math.random() * 50) + 1),
       }
+      console.log(food);
+      console.log("snakeX: " + snakeX);
+      
 
       // read position of snakes body. if snake head has same
       // position of food item, then a new one will be added.
@@ -61,11 +85,21 @@ window.onload = function () {
         var snakeY = snake[i].y;
 
         if (food.x === snakeX || food.y === snakeY || food.y === snakeY && food.x === snakeX) {
-          food.x = Math.floor((Math.random() * 30) + 1);
-          food.y = Math.floor((Math.random() * 30) + 1);
+          food.x = Math.floor((Math.random() * 800) + 1);
+          food.y = Math.floor((Math.random() * 600) + 1);
         }
       }
-    }
+
+      if (snakeX == food.x && snakeY == food.y)
+      // if (snakeX < food.x + 50 &&
+      //     snakeX + 1 > food.x &&
+      //     snakeY < food.y + 50 &&
+      //     snakeY + 1 > food.y)
+          {
+        console.log("fucking nom nom");
+      }
+    } // end createFood()
+
 
     //checks if snake collides with its own body
     var checkCollision = function (x, y, array) {
@@ -75,7 +109,6 @@ window.onload = function () {
       }
       return false;
     }
-
 
 
 
@@ -105,6 +138,9 @@ window.onload = function () {
         snakeY++;
       }
 
+       
+
+
       // checks if the snake has touch the edge 
       // of the canvas, or touched the snakes body.
       // if 'checkCollision' true will stop the game.
@@ -120,23 +156,39 @@ window.onload = function () {
         return;
       }
 
+
+      // if we eat food
       // if snake eats food it gets longer so it shouldnt 
       // pop out last element of array
-      if (snakeX == food.x && snakeY == food.y) {
+
+      // LINE BELOW WORKS , just testing
+      console.log("snakeX: " + snakeX + " snakeY: " + snakeY);
+      console.log("foodX: " + food.x + " foodY: " + food.y);
+      if (snakeX == food.x && snakeY == food.y) 
+      {
+        console.log("nom nom nom");
+
+        // update score
+        score += 1;
+        gameScore.innerHTML = score;
+        console.log("score: " + score);
+        
         // create a new sqaure instead of moving the tail.
         var tail = {
           x: snakeX,
           y: snakeY
         };
-        score++;
+
         // create new food
         createFood();
-      } else {
+      } 
+      else {
         // pop out the last cell.
         var tail = snake.pop();
         tail.x = snakeX;
         tail.y = snakeY;
       }
+
 
       // puts tail as the first cell so that the snake doesnt end.
       snake.unshift(tail);
@@ -148,7 +200,8 @@ window.onload = function () {
       }
 
       // create food using the food function
-      foodItem(food.x, food.y);  
+      // foodItem(food.x, food.y);
+      foodItem(food.x, food.y);
     }
 
 
@@ -156,7 +209,7 @@ window.onload = function () {
       direction = 'down';
       drawSnake();
       createFood();
-      gameloop = setInterval(draw, 80); // slows down or quickens the game by FPS // maybe can be used top create hard mode.
+      gameloop = setInterval(draw, 150); // slows down or quickens the game by FPS // maybe can be used top create hard mode.
     }
 
     function togglePause() {
@@ -165,9 +218,8 @@ window.onload = function () {
         clearInterval(gameloop);
       } else if (paused) {
         paused = false;
-        gameloop = setInterval(draw, 80);
+        gameloop = setInterval(draw, 150);
       }
-
     }
 
     // create an event listener for when space is pressed
@@ -188,8 +240,13 @@ window.onload = function () {
     };
 
     init();
-    // close module function
+
+
+    // close MAIN module function
   }());
+
+
+
 //   =======================================================================================================
 //   =======================================================================================================
 //   =======================================================================================================
@@ -247,10 +304,7 @@ window.onload = function () {
     }
   })(window, document, drawModule);
 
-
-
-}; 
-
+};
 
 
 
@@ -260,36 +314,4 @@ window.onload = function () {
 //jQuery ===================================== jQuery
 //jQuery ===================================== jQuery
 
-$(".score")
-
-
-
-
-// MODAL POP UP FOR HELP WINDOW
-// MODAL POP UP FOR HELP WINDOW
-// MODAL POP UP FOR HELP WINDOW
-// MODAL POP UP FOR HELP WINDOW
-// MODAL POP UP FOR HELP WINDOW
-
-// var modal = document.getElementById('modal-help');
-
-// var btn = document.getElementById('btn-help');
-
-// var span = document.getElementsByClassName('close')[0];
-
-// btn.onclick = function () {
-//   modal.style.display = "block";
-// }
-
-// span.onclick = function () {
-//   modal.style.display = "none";
-// }
-
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
-
-
+// $(".score")
