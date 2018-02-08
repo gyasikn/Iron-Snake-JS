@@ -226,8 +226,6 @@ window.onload = function () {
         // make new modal
         modalDie.style.display = "block"; //uncomment this later
         // alert("GAME OVER \nTry Again!"); 
-
-
         // refreshes pages (so score is reset)
         // window.location.href = "index.html";
         return;
