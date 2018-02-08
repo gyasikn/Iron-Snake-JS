@@ -6,12 +6,12 @@ var score = 0;
 window.onload = function () {
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-    var snakeSize = 10;
+    var snakeSize = 20;
     var w = 800;
     var h = 600;
     var snake;
     var food;
-    var myMusic;
+    var specialFood;
     var paused = false;
 
     // SOUNDS //
@@ -51,6 +51,15 @@ window.onload = function () {
       ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
     }
 
+    // var specialItem = function (x, y) {
+    //   // border of food
+    //   ctx.fillStyle = 'yellow';
+    //   ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
+    //   // single square of food.
+    //   ctx.fillStyle = 'purple';
+    //   ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
+    // }
+
     // var foodItem = function (x, y) {
     //   var img = new Image();
     //   img.onload = function () {
@@ -81,8 +90,9 @@ window.onload = function () {
       // original working placement
       food = {
         // generates random food on board.
-        x: Math.floor((Math.random() * 50) + 1),
-        y: Math.floor((Math.random() * 50) + 1),
+        // i don't fucking know why at 30
+        x: Math.floor((Math.random() * 30) + 1),
+        y: Math.floor((Math.random() * 30) + 1),
       }
       console.log(food);
       console.log("snakeX: " + snakeX);
@@ -163,7 +173,16 @@ window.onload = function () {
         // clean up the canvas.
         ctx.clearRect(0, 0, w, h);
         gameloop = clearInterval(gameloop);
+        score = 0;
+        gameScore.innerHTML = score;
         dieSound.play();
+        // make new modal
+        modal.style.display = "block"; //uncomment this later
+        // alert("GAME OVER \nTry Again!"); 
+
+
+        // refreshes pages (so score is reset)
+        // window.location.href = "index.html";
         return;
       }
 
@@ -183,6 +202,7 @@ window.onload = function () {
         score += 1;
         gameScore.innerHTML = score;
         console.log("score: " + score);
+
         
         // create a new sqaure instead of moving the tail.
         var tail = {
