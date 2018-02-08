@@ -97,15 +97,15 @@ img {
 }
 
 /* The Close Button */
-.close {
+.close, .close2{
     color: black;
     float: right;
     font-size: 47px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close, .close2:hover,
+.close, .close2:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;

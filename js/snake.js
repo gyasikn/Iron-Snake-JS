@@ -224,7 +224,7 @@ window.onload = function () {
         gameScore.innerHTML = score;
         dieSound.play();
         // make new modal
-        modal.style.display = "block"; //uncomment this later
+        modalDie.style.display = "block"; //uncomment this later
         // alert("GAME OVER \nTry Again!"); 
 
 
