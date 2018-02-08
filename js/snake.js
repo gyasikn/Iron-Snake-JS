@@ -51,14 +51,15 @@ window.onload = function () {
       ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
     }
 
-    // var specialItem = function (x, y) {
-    //   // border of food
-    //   ctx.fillStyle = 'yellow';
-    //   ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
-    //   // single square of food.
-    //   ctx.fillStyle = 'purple';
-    //   ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
-    // }
+    var specialItem = function (x, y) {
+      // border of food
+      ctx.fillStyle = 'yellow';
+      ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
+      // single square of food.
+      ctx.fillStyle = 'purple';
+      ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
+    }
+
 
     // var foodItem = function (x, y) {
     //   var img = new Image();
@@ -86,17 +87,22 @@ window.onload = function () {
 
     var createFood = function () {
 
-      
-      // original working placement
       food = {
-        // generates random food on board.
-        // i don't fucking know why at 30
-        x: Math.floor((Math.random() * 30) + 1),
-        y: Math.floor((Math.random() * 30) + 1),
+        // GENERATES RANDOM FOOD ON BOARD (REGULAR)
+        // x: Math.floor((Math.random() * 30) + 1),  // the plus 1 is so that it's inclusive of the number 30
+        // y: Math.floor((Math.random() * 30) + 1), // take off because it could generate off board.
+        x: Math.floor((Math.random() * 40)),
+        y: Math.floor((Math.random() * 30)), 
       }
       console.log(food);
       console.log("snakeX: " + snakeX);
       
+      // specialFood = {
+      //   // GENERATES SPECIAL ITEM ON BOARD
+      //   x: Math.floor((Math.random() * 40)),
+      //   y: Math.floor((Math.random() * 30)),
+      // }
+      // console.log(specialFood);
 
       // read position of snakes body. if snake head has same
       // position of food item, then a new one will be added.
@@ -110,18 +116,59 @@ window.onload = function () {
         }
       }
 
-      if (snakeX == food.x && snakeY == food.y)
-      // if (snakeX < food.x + 50 &&
-      //     snakeX + 1 > food.x &&
-      //     snakeY < food.y + 50 &&
-      //     snakeY + 1 > food.y)
-          {
+      if (snakeX == food.x && snakeY == food.y) {
         console.log("fucking nom nom");
       }
-    } // end createFood()
 
 
-    //checks if snake collides with its own body
+      // THIS IS FOR THE NEW SPECIAL FOOD. COMMENT OUT IF DOESNT WORK.
+      for (var i = 0; i > snake.length; i++) {
+        var snakeX = snake[i].x;
+        var snakeY = snake[i].y;
+
+        if (specialFood.x === snakeX || specialFood.y === snakeY || specialFood.y === snakeY && specialFood.x === snakeX) {
+          specialFood.x = Math.floor((Math.random() * 800) + 1);
+          specialFood.y = Math.floor((Math.random() * 600) + 1);
+        }
+      }
+
+        // if (snakeX == specialFood.x && snakeY == specialFood.y) {
+        //   console.log("NOM NOM PIZZA");
+        // }
+    } // END createFood()
+
+
+
+
+    var createSpecialFood = function () {
+      // setTimeout(createSpecialFood, 3000);
+
+      specialFood = {
+        // GENERATES SPECIAL ITEM ON BOARD
+        x: Math.floor((Math.random() * 40)),
+        y: Math.floor((Math.random() * 30)),
+      }
+      console.log(specialFood);
+
+      for (var i = 0; i > snake.length; i++) {
+        var snakeX = snake[i].x;
+        var snakeY = snake[i].y;
+
+        if (specialFood.x === snakeX || specialFood.y === snakeY || specialFood.y === snakeY && specialFood.x === snakeX) {
+          specialFood.x = Math.floor((Math.random() * 800) + 1);
+          specialFood.y = Math.floor((Math.random() * 600) + 1);
+        }
+      }
+
+      if (snakeX == specialFood.x && snakeY == specialFood.y) {
+        console.log("NOM NOM PIZZA");
+      }
+    } // END createSpecialFood()
+
+
+
+
+    // CHECKS IF SNAKE COLLIDES WITH ITS OWN BODY //
     var checkCollision = function (x, y, array) {
       for (var i = 0; i < array.length; i++) {
         if (array[i].x === x && array[i].y === y)
@@ -129,6 +176,8 @@ window.onload = function () {
         }
       return false;
     }
+    // CHECKS IF SNAKE COLLIDES WITH ITS OWN BODY //
+
 
 
 
@@ -158,8 +207,6 @@ window.onload = function () {
         snakeY++;
       }
 
-       
-
 
       // checks if the snake has touch the edge 
       // of the canvas, or touched the snakes body.
@@ -187,25 +234,47 @@ window.onload = function () {
       }
 
 
-      // if we eat food
-      // if snake eats food it gets longer so it shouldnt 
-      // pop out last element of array
-
-      // LINE BELOW WORKS , just testing
+      // TESTS FOR X AND Y AXIS OF BOTH SNAKE AND FOOD //
       console.log("snakeX: " + snakeX + " snakeY: " + snakeY);
       console.log("foodX: " + food.x + " foodY: " + food.y);
-      if (snakeX == food.x && snakeY == food.y) 
-      {
-        console.log("nom nom nom");
+      // TESTS FOR X AND Y AXIS OF BOTH SNAKE AND FOOD //
 
+
+      // IF WE EAT FOOD=======================================================================================
+      
+      // SPECIAL FOOD
+      if (snakeX == specialFood.x && snakeY == specialFood.y) {
+        console.log("SPECIAL NOM NOM NOM NOM NOM NOM NOM");
+        // removes special Food from page
+        specialFood.x = NaN;
+        // updates score by 10 bc sp3cials f00dz
+        score += 10;
+        gameScore.innerHTML = score;
+        console.log("score: " + score);
+        createSpecialFood();
+        foodSound.play();
+        // makes tail bigger
+        var tail = {
+          x: snakeX,
+          y: snakeY
+        };
+      }
+
+
+      // NORMAL FOOD 
+      else if (snakeX == food.x && snakeY == food.y) {
+        console.log("nom nom nom nom nom nom");
+
+        // removes food from page
+        food.x = NaN;
         // update score
-        score += 1;
+        score++;
         gameScore.innerHTML = score;
         console.log("score: " + score);
 
         
         // create a new sqaure instead of moving the tail.
-        var tail = {
+        tail = {
           x: snakeX,
           y: snakeY
         };
@@ -213,13 +282,13 @@ window.onload = function () {
         // create new food
         createFood();
         foodSound.play();
-      } 
-      else {
+
+      } else {
         // pop out the last cell.
         var tail = snake.pop();
         tail.x = snakeX;
         tail.y = snakeY;
-      }
+      };
 
 
       // puts tail as the first cell so that the snake doesnt end.
@@ -233,6 +302,7 @@ window.onload = function () {
 
       // create food using the food function
       // foodItem(food.x, food.y);
+      specialItem(specialFood.x, specialFood.y);
       foodItem(food.x, food.y);
     }
 
@@ -241,6 +311,7 @@ window.onload = function () {
       direction = 'down';
       drawSnake();
       createFood();
+      createSpecialFood();
       gameloop = setInterval(draw, 150); // slows down or quickens the game by FPS // maybe can be used top create hard mode.
     }
 
@@ -273,22 +344,13 @@ window.onload = function () {
     };
     init();
 
-    // close MAIN module function
-  }());
+    
+  }());  // end draw module function
 
 
 
-//   =======================================================================================================
-//   =======================================================================================================
-//   =======================================================================================================
-//   =======================================================================================================
-//   =======================================================================================================
-//   =======================================================================================================
-// END OF WINDOW.ONLOAD FUNCTION
 
-// CONTROLS
-
-
+// CONTROLS //
   (function (window, document, drawModule, undefined) {
 
     // connects button in html with init function
@@ -296,7 +358,6 @@ window.onload = function () {
     btn.addEventListener("click", function () {
       drawModule.init();
       helpSound.play();
-
     });
 
     document.onkeydown = function (event) {
@@ -336,18 +397,18 @@ window.onload = function () {
       }
     }
   })(window, document, drawModule);
+// END CONTROLS //
+
+
 
 };
+//   =======================================================================================================
+//   =======================================================================================================
+//   =======================================================================================================
+// END OF MAIN WINDOW.ONLOAD FUNCTION
 
 
 
-//jQuery ===================================== jQuery
-//jQuery ===================================== jQuery
-//jQuery ===================================== jQuery
-//jQuery ===================================== jQuery
-//jQuery ===================================== jQuery
-
-// $(".score")
 
 //window frame for losing the game. GAME OVER SCREEN
 // var loseGame = () => {
