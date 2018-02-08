@@ -13,7 +13,16 @@ window.onload = function () {
     var food;
     var myMusic;
     var paused = false;
+
+    // SOUNDS //
+    var foodSound = new Audio("sounds/coin.wav");
+    var pauseSound = new Audio("sounds/levelup.wav");
+    var dieSound = new Audio("sounds/die.wav");
+    var helpSound = new Audio("sounds/start.wav");
+    // SOUNDS //
     
+
+
     // var food = {
     //   x: Math.floor((Math.random() * 800) + 1),
     //   y: Math.floor((Math.random() * 600) + 1),
@@ -107,7 +116,7 @@ window.onload = function () {
       for (var i = 0; i < array.length; i++) {
         if (array[i].x === x && array[i].y === y)
           return true;
-      }
+        }
       return false;
     }
 
@@ -154,6 +163,7 @@ window.onload = function () {
         // clean up the canvas.
         ctx.clearRect(0, 0, w, h);
         gameloop = clearInterval(gameloop);
+        dieSound.play();
         return;
       }
 
@@ -182,6 +192,7 @@ window.onload = function () {
 
         // create new food
         createFood();
+        foodSound.play();
       } 
       else {
         // pop out the last cell.
@@ -230,6 +241,7 @@ window.onload = function () {
       if (key === 32) // spacebar
       {
         togglePause();
+        pauseSound.play();
       }
     });
 
@@ -239,9 +251,7 @@ window.onload = function () {
     return {
       init: init
     };
-
     init();
-
 
     // close MAIN module function
   }());
@@ -265,6 +275,8 @@ window.onload = function () {
     var btn = document.getElementById('btn');
     btn.addEventListener("click", function () {
       drawModule.init();
+      helpSound.play();
+
     });
 
     document.onkeydown = function (event) {
@@ -316,3 +328,21 @@ window.onload = function () {
 //jQuery ===================================== jQuery
 
 // $(".score")
+
+//window frame for losing the game. GAME OVER SCREEN
+// var loseGame = () => {
+//   if (whatever === 0) {
+//     stop();
+//     ctx. ...
+//     ctx. ....
+//   }
+// }
+
+// var stop = () => {
+//   clearInterval(intervalId);
+// }
+
+
+
+
+// make a constructor for the ghost and define the width maybe will fix issue
