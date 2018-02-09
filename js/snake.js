@@ -14,11 +14,15 @@ window.onload = function () {
     var specialFood;
     var paused = false;
 
+
     // SOUNDS //
-    var foodSound = new Audio("sounds/coin.wav");
-    var pauseSound = new Audio("sounds/levelup.wav");
-    var dieSound = new Audio("sounds/die.wav");
-    var helpSound = new Audio("sounds/start.wav");
+    var foodSound = new Audio("sounds/WW_Get_Rupee.wav");
+    var specialFoodSound = new Audio("sounds/WW_Fanfare_Rupee.wav");
+    var pauseSound = new Audio("sounds/WW_PauseMenu_Open.wav");
+    var dieSound = new Audio("sounds/LTTP_ItemFanfare_Stereo.wav");
+    var naviHey = new Audio("sounds/OOT_Navi_Hey1.wav");
+    var naviLook = new Audio("sounds/OOT_Navi_Look1.wav");
+    var pressStart = new Audio("sounds/OOT_PressStart.wav");
     // SOUNDS //
     
 
@@ -94,8 +98,8 @@ window.onload = function () {
         x: Math.floor((Math.random() * 40)),
         y: Math.floor((Math.random() * 30)), 
       }
-      console.log(food);
-      console.log("snakeX: " + snakeX);
+      // console.log(food);
+      // console.log("snakeX: " + snakeX);
       
       // specialFood = {
       //   // GENERATES SPECIAL ITEM ON BOARD
@@ -138,17 +142,28 @@ window.onload = function () {
     } // END createFood()
 
 
-
+    // var handle = setInterval(createSpecialFood, 3000);
+    var handle =  setInterval(function(){
+      createSpecialFood();
+    }, 3000);
+    
+    // clearInterval(handle);
+    // if (score % 5 === 0) {
+    //   handle = setInterval(createSpecialFood, 3000);
+    //   // clearInterval(handle);
+    // }
+    
 
     var createSpecialFood = function () {
-      // setTimeout(createSpecialFood, 3000);
+
+      
 
       specialFood = {
         // GENERATES SPECIAL ITEM ON BOARD
         x: Math.floor((Math.random() * 40)),
-        y: Math.floor((Math.random() * 30)),
+        y: Math.floor((Math.random() * 30))
       }
-      console.log(specialFood);
+      // console.log("spec food", specialFood);
 
       for (var i = 0; i > snake.length; i++) {
         var snakeX = snake[i].x;
@@ -163,10 +178,35 @@ window.onload = function () {
       if (snakeX == specialFood.x && snakeY == specialFood.y) {
         console.log("NOM NOM PIZZA");
       }
+
+
+      // SPECIAL FOOD
+      if (snakeX == specialFood.x && snakeY == specialFood.y) {
+        console.log("SPECIAL NOM NOM NOM NOM NOM NOM NOM");
+        // removes special Food from page
+        specialFood.x = NaN;
+        // updates score by 10 bc sp3cials f00dz
+        score += 10;
+        gameScore.innerHTML = score;
+        console.log("score: " + score);
+        // if (score % 5 === 0) {
+          createSpecialFood();
+
+        // }
+        foodSound.play();
+        // makes tail bigger
+        var tail = {
+          x: snakeX,
+          y: snakeY
+        };
+      }
     } // END createSpecialFood()
 
-
-
+    // does not work here either....
+    //  if (score === 15) {
+    //   handle = setInterval(createSpecialFood, 3000);
+    //   clearInterval(handle);
+    // }
 
     // CHECKS IF SNAKE COLLIDES WITH ITS OWN BODY //
     var checkCollision = function (x, y, array) {
@@ -225,7 +265,7 @@ window.onload = function () {
         dieSound.play();
         // make new modal
         modalDie.style.display = "block"; //uncomment this later
-        // alert("GAME OVER \nTry Again!"); 
+        
         // refreshes pages (so score is reset)
         // window.location.href = "index.html";
         return;
@@ -233,12 +273,18 @@ window.onload = function () {
 
 
       // TESTS FOR X AND Y AXIS OF BOTH SNAKE AND FOOD //
-      console.log("snakeX: " + snakeX + " snakeY: " + snakeY);
-      console.log("foodX: " + food.x + " foodY: " + food.y);
+      // console.log("snakeX: " + snakeX + " snakeY: " + snakeY);
+      // console.log("foodX: " + food.x + " foodY: " + food.y);
       // TESTS FOR X AND Y AXIS OF BOTH SNAKE AND FOOD //
 
 
       // IF WE EAT FOOD=======================================================================================
+      
+      // THIS CODE BELOW DOES NOT WORK HERE - STOP FUCKING
+      // if (score % 5 === 0) {
+      //   handle = setInterval(createSpecialFood, 3000);
+      //   // clearInterval(handle);
+      // }
       
       // SPECIAL FOOD
       if (snakeX == specialFood.x && snakeY == specialFood.y) {
@@ -249,14 +295,18 @@ window.onload = function () {
         score += 10;
         gameScore.innerHTML = score;
         console.log("score: " + score);
-        createSpecialFood();
-        foodSound.play();
+        // if (score % 5 === 0) {
+
+          createSpecialFood();
+        // }
+        specialFoodSound.play();
         // makes tail bigger
         var tail = {
           x: snakeX,
           y: snakeY
         };
       }
+      
 
 
       // NORMAL FOOD 
@@ -336,6 +386,7 @@ window.onload = function () {
 
 
 
+
 // WILL RESTART THE GAME UPON PRESSING START. WITHOUT THIS IT WILL NOT RESTART. ONLY REFRESH PAGE WILL WORK
     return {
       init: init
@@ -355,7 +406,8 @@ window.onload = function () {
     var btn = document.getElementById('btn');
     btn.addEventListener("click", function () {
       drawModule.init();
-      helpSound.play();
+      pressStart.play();
+      naviLook.play();
     });
 
     document.onkeydown = function (event) {
@@ -396,8 +448,6 @@ window.onload = function () {
     }
   })(window, document, drawModule);
 // END CONTROLS //
-
-
 
 };
 //   =======================================================================================================
