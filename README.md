@@ -1,6 +1,6 @@
 Welcome to my game Python! Click the link below to play!
 
-https://gyasikn.github.io/snake-canvas-javascript/
+https://gyasikn.github.io/snake-game-javascript/
 
 
 This game was created by me using Javascript, Canvas, HTML & CSS. It is a remake of the classic snake arcade game that everyone knows.
