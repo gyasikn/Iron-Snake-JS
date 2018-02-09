@@ -48,30 +48,30 @@ window.onload = function () {
 
     var foodItem = function (x, y) {
       // border of food
-      ctx.fillStyle = 'yellow';
+      ctx.fillStyle = 'green';
       ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
       // single square of food.
-      ctx.fillStyle = 'red';
+      ctx.fillStyle = 'yellow';
       ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
     }
+
+    // var specialItem = function (x, y) {
+    //   // // border of food
+    //   ctx.fillStyle = 'yellow';
+    //   ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
+    //   // // single square of food.
+    //   ctx.fillStyle = 'darkred';
+    //   ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
+    // }
+
 
     var specialItem = function (x, y) {
-      // border of food
-      ctx.fillStyle = 'yellow';
-      ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
-      // single square of food.
-      ctx.fillStyle = 'purple';
-      ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
-    }
-
-
-    // var foodItem = function (x, y) {
-    //   var img = new Image();
-    //   img.onload = function () {
-    //     ctx.drawImage(img, food.x, food.y);
-    //   }
-    //   img.src = "images/clyde.gif";
-    // }  
+      var img = new Image();
+      img.onload = function () {
+        ctx.drawImage(img, x * snakeSize, y * snakeSize, snakeSize, snakeSize);
+      }
+      img.src = "images/pizza-slice.png";
+    }  
 
 
     var drawSnake = function () {
@@ -360,7 +360,7 @@ window.onload = function () {
       drawSnake();
       createFood();
       createSpecialFood();
-      gameloop = setInterval(draw, 150); // slows down or quickens the game by FPS // maybe can be used top create hard mode.
+      gameloop = setInterval(draw, 90); // slows down or quickens the game by FPS // maybe can be used top create hard mode.
     }
 
     function togglePause() {
@@ -369,7 +369,7 @@ window.onload = function () {
         clearInterval(gameloop);
       } else if (paused) {
         paused = false;
-        gameloop = setInterval(draw, 150);
+        gameloop = setInterval(draw, 90);
       }
     }
 

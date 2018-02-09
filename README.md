@@ -11,7 +11,7 @@ Try to get as much points as possible without dying by moving the snake & eating
 
 Regular food = 1pt
 
-Special Food = 10pts (Appear every 3 seconds in different locations).
+PIZZA = 10pts (Appear every 3 seconds in different locations).
 
 Don't run into yourself or into the walls or you will die!
 
