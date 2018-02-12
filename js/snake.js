@@ -182,7 +182,6 @@ window.onload = function () {
 
       // SPECIAL FOOD
       if (snakeX == specialFood.x && snakeY == specialFood.y) {
-        console.log("SPECIAL NOM NOM NOM NOM NOM NOM NOM");
         // removes special Food from page
         specialFood.x = NaN;
         // updates score by 10 bc sp3cials f00dz
@@ -193,6 +192,7 @@ window.onload = function () {
           createSpecialFood();
 
         // }
+        foodSound.currentTime = 0;
         foodSound.play();
         // makes tail bigger
         var tail = {
@@ -288,7 +288,7 @@ window.onload = function () {
       
       // SPECIAL FOOD
       if (snakeX == specialFood.x && snakeY == specialFood.y) {
-        console.log("SPECIAL NOM NOM NOM NOM NOM NOM NOM");
+        console.log("MMMMMMM PIZZA!!!!!!");
         // removes special Food from page
         specialFood.x = NaN;
         // updates score by 10 bc sp3cials f00dz
@@ -299,6 +299,7 @@ window.onload = function () {
 
           createSpecialFood();
         // }
+        specialFoodSound.currentTime = 0;
         specialFoodSound.play();
         // makes tail bigger
         var tail = {
@@ -311,7 +312,7 @@ window.onload = function () {
 
       // NORMAL FOOD 
       else if (snakeX == food.x && snakeY == food.y) {
-        console.log("nom nom nom nom nom nom");
+        console.log("nom nom nom nom still hungry tho...");
 
         // removes food from page
         food.x = NaN;
@@ -380,6 +381,7 @@ window.onload = function () {
       if (key === 32) // spacebar
       {
         togglePause();
+        pauseSound.currentTime = 0;
         pauseSound.play();
       }
     });
