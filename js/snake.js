@@ -265,7 +265,6 @@ window.onload = function () {
         dieSound.play();
         // make new modal
         modalDie.style.display = "block"; //uncomment this later
-        
         // refreshes pages (so score is reset)
         // window.location.href = "index.html";
         return;
