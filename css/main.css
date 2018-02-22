@@ -13,6 +13,10 @@ h1 {
   margin: 0 auto;
 }
 
+.snake-word {
+  color: yellow;
+}
+
 img {
   /* border: 5px solid rgb(207, 155, 255); */
   border: 5px solid rgb(139, 255, 139);

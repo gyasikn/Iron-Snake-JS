@@ -1,9 +1,17 @@
-Welcome to my game Python! Click the link below to play!
+Welcome to my game Python! 
 
-https://gyasikn.github.io/snake-game-javascript/
+This is a Canvas based Javascript game that I created in one week for Module 1 of Ironhack. It is a remake of the classic game "Snake". Technologies Used: Vanilla Javascript, Canvas, HTML & CSS. 
+
+Later on I will implement a High-Score feature where you will be able to save your data and display it on the site. Stay tuned!
 
 
-This game was created by me using Javascript, Canvas, HTML & CSS. It is a remake of the classic snake arcade game that everyone knows.
+
+Click the link below to play!
+
+https://python-game-js.herokuapp.com/
+
+
+
 
 Directions: 
 
@@ -13,7 +21,8 @@ Regular food = 1pt
 
 PIZZA = 10pts (Appear every 3 seconds in different locations).
 
-Don't run into yourself or into the walls or you will die!
+Don't run into yourself or into the perimeter or you will die!
+
 
 Click the HELP button if you need further instructions.
 
