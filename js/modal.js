@@ -64,17 +64,3 @@ window.onclick = function(event){
   }
 
 }
-
-
-
-
-
-
-
-//refactor window.onclick method
-// function whatever(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-// whatever();

@@ -26,14 +26,6 @@ window.onload = function () {
     // SOUNDS //
     
 
-
-    // var food = {
-    //   x: Math.floor((Math.random() * 800) + 1),
-    //   y: Math.floor((Math.random() * 600) + 1),
-    // }
-
-    // console.log(food);
-
   var drawModule = (function () {
     var bodySnake = function (x, y) {
       // snake body color
@@ -54,15 +46,6 @@ window.onload = function () {
       ctx.fillStyle = 'yellow';
       ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
     }
-
-    // var specialItem = function (x, y) {
-    //   // // border of food
-    //   ctx.fillStyle = 'yellow';
-    //   ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
-    //   // // single square of food.
-    //   ctx.fillStyle = 'darkred';
-    //   ctx.fillRect(x * snakeSize + 1, y * snakeSize + 1, snakeSize - 2, snakeSize - 2);
-    // }
 
 
     var specialItem = function (x, y) {
@@ -98,15 +81,7 @@ window.onload = function () {
         x: Math.floor((Math.random() * 40)),
         y: Math.floor((Math.random() * 30)), 
       }
-      // console.log(food);
-      // console.log("snakeX: " + snakeX);
-      
-      // specialFood = {
-      //   // GENERATES SPECIAL ITEM ON BOARD
-      //   x: Math.floor((Math.random() * 40)),
-      //   y: Math.floor((Math.random() * 30)),
-      // }
-      // console.log(specialFood);
+
 
       // read position of snakes body. if snake head has same
       // position of food item, then a new one will be added.
@@ -135,10 +110,6 @@ window.onload = function () {
           specialFood.y = Math.floor((Math.random() * 600) + 1);
         }
       }
-
-        // if (snakeX == specialFood.x && snakeY == specialFood.y) {
-        //   console.log("NOM NOM PIZZA");
-        // }
     } // END createFood()
 
 
@@ -146,12 +117,6 @@ window.onload = function () {
     var handle =  setInterval(function(){
       createSpecialFood();
     }, 3000);
-    
-    // clearInterval(handle);
-    // if (score % 5 === 0) {
-    //   handle = setInterval(createSpecialFood, 3000);
-    //   // clearInterval(handle);
-    // }
     
 
     var createSpecialFood = function () {
@@ -202,11 +167,6 @@ window.onload = function () {
       }
     } // END createSpecialFood()
 
-    // does not work here either....
-    //  if (score === 15) {
-    //   handle = setInterval(createSpecialFood, 3000);
-    //   clearInterval(handle);
-    // }
 
     // CHECKS IF SNAKE COLLIDES WITH ITS OWN BODY //
     var checkCollision = function (x, y, array) {
@@ -272,18 +232,10 @@ window.onload = function () {
 
 
       // TESTS FOR X AND Y AXIS OF BOTH SNAKE AND FOOD //
-      // console.log("snakeX: " + snakeX + " snakeY: " + snakeY);
-      // console.log("foodX: " + food.x + " foodY: " + food.y);
-      // TESTS FOR X AND Y AXIS OF BOTH SNAKE AND FOOD //
+      console.log("snakeX: " + snakeX + " snakeY: " + snakeY);
+      console.log("foodX: " + food.x + " foodY: " + food.y);
 
-
-      // IF WE EAT FOOD=======================================================================================
-      
-      // THIS CODE BELOW DOES NOT WORK HERE - STOP FUCKING
-      // if (score % 5 === 0) {
-      //   handle = setInterval(createSpecialFood, 3000);
-      //   // clearInterval(handle);
-      // }
+      // IF WE EAT FOOD======================================================================================= //
       
       // SPECIAL FOOD
       if (snakeX == specialFood.x && snakeY == specialFood.y) {
@@ -455,24 +407,3 @@ window.onload = function () {
 //   =======================================================================================================
 //   =======================================================================================================
 // END OF MAIN WINDOW.ONLOAD FUNCTION
-
-
-
-
-//window frame for losing the game. GAME OVER SCREEN
-// var loseGame = () => {
-//   if (whatever === 0) {
-//     stop();
-//     ctx. ...
-//     ctx. ....
-//   }
-// }
-
-// var stop = () => {
-//   clearInterval(intervalId);
-// }
-
-
-
-
-// make a constructor for the ghost and define the width maybe will fix issue
