@@ -3,14 +3,11 @@
 }
 
 body {
-   background-color: black;
+  background-color: black;
 }
 
-#btn, #btn-help{
-  position: absolute;
-  top: 100px;
-  left: 320px;
-  background-color: rgb(139, 255, 139); /* Neon green color */
+#btn {
+  background-color: rgb(139, 255, 139);
   border: none;
   border-radius: 5px;
   color: black;
@@ -21,18 +18,21 @@ body {
   font-size: 14pt;
 }
 
+
 #btn-help {
   background-color: rgb(207, 155, 255);
-  position: absolute;
-  top: 100px;
-  left: 450px;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14pt;
 }
 
 .score {
-  position: absolute;
-  top: 100px;
-  right: 325px;
-  background-color: rgb(139, 255, 139); /* Neon green color */
+  background-color: rgb(139, 255, 139);
   border: none;
   border-radius: 5px;
   color: black;
@@ -55,7 +55,7 @@ body {
   border: 2px solid rgb(139, 255, 139);
   border-radius: 5px;
   position: absolute;
-  top: 150px;
+  top: 170px;
   bottom: 0;
   left: 0;
   right: 0;
