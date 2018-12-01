@@ -1,4 +1,4 @@
-# IRON SNAKE
+# Iron Snake
 ## February 2018
 
 `Welcome to my game, Iron Snake!`
